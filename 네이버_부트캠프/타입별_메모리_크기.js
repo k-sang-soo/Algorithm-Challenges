@@ -1,4 +1,4 @@
-const arr = ["INT", "INT", "BOOL", "SHORT", "LONG"];
+const arr = ["BOOL", "SHORT"];
 /* const arr = ["INT", "SHORT", "FLOAT", "INT","BOOL"]; */
 /* const arr = ["FLOAT", "SHORT", "BOOL", "BOOL", "BOOL", "INT"]; */
 /* const arr = ["BOOL", "LONG", "SHORT", "LONG", "BOOL", "LONG", "BOOL", "LONG", "SHORT", "LONG", "LONG"]; */
@@ -20,7 +20,7 @@ function solution(n) {
             //현재 idx보다 작거나 같으면 안된다.
             //합친 인덱스는 아무것도 하지 않고 넘김
             console.log('합친 인덱스는 아무것도 하지 않고 넘김', 'memory : ', memory, 'next :', next );
-            next = null
+            next = null;
             return;
         } else if(memory.bite.length === 8) {
             //8바이트면
@@ -32,16 +32,21 @@ function solution(n) {
             nextIdx = idx + 1;
             next = memories[nextIdx];
             total = next ? memory.bite + next.bite : memory.bite;
+            console.log('next asdas', next);
+            console.log('total asdasd', total);
             //next 가 있어야하고
             //total length가 8 보다 크면 안됨
             //8보다 크기 전까지는 다음 요소들을 합쳐줘야함
             while (total.length < 8 && next) {
                 nextIdx += 1;
+                if(!memories[nextIdx]) break;
+
                 if(memories[nextIdx].bite.length + total.length > 8) {
                     nextIdx -= 1;
                     break;
-                };
-                total += memories[nextIdx].bite;
+                } else {
+                    total += memories[nextIdx].bite;
+                }
                 console.log('반복 total', total, 'nextIdx', nextIdx);
             }
             console.log('반복 끝 ', total);
