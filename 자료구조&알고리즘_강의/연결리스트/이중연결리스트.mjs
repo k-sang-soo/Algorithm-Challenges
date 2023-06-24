@@ -69,7 +69,7 @@ class DoublyLinkedList {
         }
 
         //새로 삽입한 노드가 마지막이라면
-        if (nextNode.next === null) {
+        if (newNode.next === null) {
             this.tail = newNode;
         }
 
@@ -138,4 +138,4 @@ class DoublyLinkedList {
     }
 }
 
-export { Node, DoublyLinkedList };
+export { DoublyLinkedList };
