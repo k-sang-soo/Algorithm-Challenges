@@ -18,18 +18,18 @@ class DoublyLinkedList {
     //모든 데이터 출력
     printAll() {
         let currentNode = this.head;
-        let text = "[";
+        let text = '[';
 
-        while(currentNode != null) {
+        while (currentNode != null) {
             console.log(currentNode);
             text += currentNode.data;
             currentNode = currentNode.next;
 
-            if(currentNode != null) {
-                text += ", ";
+            if (currentNode != null) {
+                text += ', ';
             }
         }
-        text += "]";
+        text += ']';
         console.log(text);
     }
 
@@ -48,7 +48,7 @@ class DoublyLinkedList {
 
         if (index === 0) {
             newNode.next = this.head;
-            if(this.head !== null) {
+            if (this.head !== null) {
                 this.head.prev = newNode;
             }
             this.head = newNode;
@@ -56,7 +56,6 @@ class DoublyLinkedList {
             newNode.next = null;
             newNode.prev = this.tail;
             this.tail.next = newNode;
-
         } else {
             let currentNode = this.head;
 
@@ -64,8 +63,16 @@ class DoublyLinkedList {
                 currentNode = currentNode.next;
             }
             newNode.next = currentNode.next;
+            newNode.prev = currentNode;
             currentNode.next = newNode;
+            newNode.next.prev = newNode;
         }
+
+        //새로 삽입한 노드가 마지막이라면
+        if (nextNode.next === null) {
+            this.tail = newNode;
+        }
+
         this.count++;
     }
 
@@ -82,9 +89,21 @@ class DoublyLinkedList {
 
         let currentNode = this.head;
 
-        if(index === 0) {
+        if (index === 0) {
             let deleteNode = currentNode;
-            this.head = this.head.next;
+            if (this.head.next === null) {
+                this.head = null;
+                this.tail = null;
+            } else {
+                this.head = this.head.next;
+                this.head.prev = null;
+            }
+            this.count--;
+            return deleteNode;
+        } else if (index === this.count - 1) {
+            let deleteNode = this.tail;
+            this.tail.prev.next = null;
+            this.tail = this.tail.prev;
             this.count--;
             return deleteNode;
         } else {
@@ -93,6 +112,7 @@ class DoublyLinkedList {
             }
             let deleteNode = currentNode.next;
             currentNode.next = currentNode.next.next;
+            currentNode.next.prev = currentNode;
             this.count--;
             return deleteNode;
         }
