@@ -28,7 +28,7 @@ class DoublyLinkedList {
             if (currentNode != null) {
                 text += ', ';
             }
-        }
+        }s
         text += ']';
         console.log(text);
     }
