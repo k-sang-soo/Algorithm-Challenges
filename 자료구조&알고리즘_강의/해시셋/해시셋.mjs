@@ -1,7 +1,7 @@
 import { HashTable } from "../해시테이블/해시테이블.mjs";
 
 class HashSet {
-    constructor(props) {
+    constructor() {
         this.hashTable = new HashTable();
     }
 
