@@ -13,6 +13,7 @@ console.log(factorial(3));
 function factorial(3) {
     if(3 === 1 || 3 === 0) {
         return 1;
+
     }
     return 3 * factorial(2); // 첫번째 호출에서 3에 factorial(2)의 결과를 곱한 결과를 반환해야 하므로 대기
 }
